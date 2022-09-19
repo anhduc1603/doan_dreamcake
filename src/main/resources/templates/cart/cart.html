@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>DREAM CAKE </title>
+    <!-- CSS ================================================== -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link media='all' rel='stylesheet' th:href="@{/css/timber.scssc18b.css?v=1843}" type='text/css'/>
+    <link media='all' rel='stylesheet' th:href="@{/css/check_outc18b.css?v=1843}" type='text/css'/>
+    <link media='all' rel='stylesheet' th:href="@{/css/style-cafesuplo.scssc18b.css?v=1844}" type='text/css'/>
+    <link th:href="@{/css/custom.css?v=1843}" rel='stylesheet' type='text/css' media='all'/>
+    <link media='all' rel='stylesheet' th:href="@{/css/owl.carouselc18b.css?v=1843}" type='text/css'/>
+    <link media='all' rel='stylesheet' th:href="@{/css/owl.themec18b.css?v=1843}" type='text/css'/>
+    <link media='all' rel='stylesheet' th:href="@{/css/owl.transitionsc18b.css?v=1843}" type='text/css'/>
+    <link crossorigin="anonymous" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
+          rel="stylesheet" th:href="@{/css/font-awesome.min.css?v=1843}">
+    <script th:src="@{/js/jquery.min.js}" type='text/javascript'></script>
+    <script th:src="@{/js/modernizr.minc18b.js?v=1843}" type='text/javascript'></script>
+    <script th:src="@{/js/owl.carousel.minc18b.js?v=1843}" type='text/javascript'></script>
+</head>
+<body>
+
+<!-- HEADER -->
+<div th:replace="fragments/header::header"></div>
+<!--HEADER-->
+
+<!--Image bottom header-->
+<section class="breadcrumb-w-img" id="breadcrumb-wrapper">
+    <div class="breadcrumb-overlay"></div>
+    <div class="breadcrumb-content">
+        <div class="wrapper">
+            <div class="inner text-center">
+                <div class="breadcrumb-big">
+                    <h2 >
+                        CARAMEL AND CHOCOLATE CAKE MOUSSE Vuông
+                    </h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--Image bottom header-->
+
+<!--Detail-->
+
+
+<!--main cart-->
+
+
+<div id="PageContainer" class="is-moved-by-drawer">
+    <main class="main-content" role="main">
+        <div id="page-wrapper">
+            <div class="wrapper">
+                <div class="inner">
+
+
+                    <h1 > Giỏ hàng (<span th:text="${cartCount}">2</span> Đơn hàng)</h1>
+                    <form action="/cart" method="post" novalidate class="cart table-wrap">
+                        <table class="cart-table full table--responsive">
+                            <thead class="cart__row cart__header-labels">
+                            <th colspan="2" class="text-center">Thông tin chi tiết sản phẩm</th>
+                            <th class="text-center">Đơn giá</th>
+                            <th class="text-center">Số lượng</th>
+                            <th class="text-right">Tổng giá</th>
+                            </thead>
+                            <tbody>
+
+                            <tr class="cart__row table__section" th:each="item, iStat : ${cart}" height="160px">
+                                <td data-label="Sản phẩm" height="130px" cellpadding="0">
+                                    <a th:href="@{/shop/viewproduct/{id}(id=${item.id})}" class="cart__image">
+                                        <img th:src="@{${'/productImages/' + item.imageName}}" th:alt="${item.name}"
+                                             width="130px" height="130px">
+                                    </a>
+                                </td>
+                                <td>
+                                    <a th:href="@{/shop/viewproduct/{id}(id=${item.id})}" class="h4"  th:text="${item.name}">
+                                        Name cake here
+                                    </a>
+
+                                    <br>
+                                    <small th:text="${item.weight}">20 x 20 cm</small>
+                                    <a  th:href="@{/cart/removeItem/{index}(index=${iStat.index})}"  class="cart__remove">
+                                        <small>Xóa</small>
+                                    </a>
+                                </td>
+                                <td data-label="Đơn giá">
+								<span class="h3"   th:text="${#numbers.formatCurrency(item.price)}" >
+									360,000₫
+								</span>
+                                </td>
+                                <td data-label="Số lượng">
+                                    <input type="number" name="updates[]" id="updates_" data-id="" value="1" min="0"
+                                           onkeypress="return event.charCode >= 48 && event.charCode <= 57">
+                                </td>
+                                <td data-label="Tổng giá" class="text-right">
+
+								<span class="h3" th:text="${#numbers.formatCurrency(item.price)}">
+									360,000₫
+								</span>
+
+                                </td>
+                            </tr>
+
+                            </tbody>
+                        </table>
+                        <div class="grid cart__row">
+
+                            <div class="grid__item two-thirds small--one-whole">
+                                <label >
+                                    <strong>
+                                        Quý khách xin vui lòng nhập thông tin: Họ tên, Ngày tháng năm sinh, Địa chỉ nhận, Thời gian nhận bánh và Số điện thoại liên hệ.
+                                    </strong></label>
+                            </div>
+
+                            <div class="grid__item text-right one-third small--one-whole">
+                                <p>
+                                    <span class="cart__subtotal-title">Tổng tiền</span>
+                                    <span class="h3 cart__subtotal" th:text="${#numbers.formatCurrency(total)}">690,000₫</span>
+                                </p>
+
+                                <p><em>Vận chuyển</em></p>
+                                <button type="submit" name="update" class="btn update-cart">Cập nhật</button>
+                                <div  class="btn ">
+
+							<span class="checkout_btn no_click" th:href="@{/checkout}">
+								Thanh toán
+							</span>
+
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+
+                    <script>
+                        jQuery('.checkout_btn').click(function(){
+                            event.preventDefault();
+                            var checked = $('textarea#CartSpecialInstructions').val();
+                            if (checked == '') {
+                                alert('Bạn chưa điền thông tin vào chú thích cho chủ cửa hàng !');
+                            } else {
+                                window.location = '/checkout';
+                            }
+
+                        });
+                    </script>
+
+                    <style>
+                        pointer-events: none;
+                        cursor: pointer;
+                        }
+                    </style>
+
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+
+<!--main cart-->
+
+<!-- FOOTER -->
+<div th:replace="fragments/footer::footer"></div>
+<!-- FOOTER -->
+</body>
+</html>
